@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Проекты</title>
+    <link rel="stylesheet" href="/css/stylesheet.css" />
+    <link rel="stylesheet" href="/css/projectStyles.css"/>
+</head>
+<body>
+    <header>
+        <div class="header__row">
+            <div>
+                <h3>Место для лого</h3>
+            </div>
+            <div class="header__title">
+                <h3>Проекты</h3>
+            </div>
+            <div class="header__row sections">
+                <a class="header__btn" th:href="@{projects}">Проекты</a>
+                <a class="header__btn" th:href="@{users}">Пользователи</a>
+            </div>
+        </div>
+    </header>
+
+<main>
+    <div class="cart" th:each="project : ${projects}">
+        <img th:src="${project.getImageURL()}" alt="фото" class="photo" />
+        <div>
+            <a th:href="@{projects/{id} (id= ${project.getId()})}" th:text="${project.getName()}"></a>
+            <p th:text="${project.getDescription()}"></p>
+            <p th:text="${project.getURL()}"></p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="links">
+        <div class="header__row sections links__buttons">
+            <a class="header__btn create link" th:href="@{projects/create}">Создать</a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

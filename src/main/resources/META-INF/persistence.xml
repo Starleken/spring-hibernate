@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+             http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
+    <persistence-unit name="SpringHibernate" transaction-type="RESOURCE_LOCAL">
+
+        <class>by.Starleken.entities.Project</class>
+        <class>by.Starleken.entities.Comment</class>
+        <class>by.Starleken.entities.Plan</class>
+        <class>by.Starleken.entities.User</class>
+        <class>by.Starleken.entities.Tag</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/portfolio"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="tqw1467gheK"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>
+

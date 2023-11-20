@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap");
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+:root {
+    --max-width: 1200px;
+    --accent-color: #0174be;
+    --header-color: white;
+    --body-color: #e9e9e9;
+    --black-element: black;
+}
+
+header {
+    box-shadow: 0 0 1px var(--black-element);
+    padding: 10px 25px;
+    background: var(--header-color);
+}
+
+.header__row {
+    display: flex;
+    flex-direction: row;
+}
+
+body {
+    background: var(--body-color);
+}
+
+.header__title {
+    margin: 0 auto;
+}
+
+.header__btn {
+    background: var(--accent-color);
+    color: var(--header-color);
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.1s;
+    margin-right: 1px;
+    text-decoration: none;
+}
+
+.header__btn:hover {
+    opacity: 0.7;
+}
+
+main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.main__section {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.first__part {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    background: white;
+    justify-content: center;
+    border-radius: 10px;
+    margin-right: auto
+}
+.main__btn {
+    width: calc(var(--max-width) / 4);
+    margin: 30px 0;
+    align-self: center;
+}
+
+.part {
+    padding: 5px 15px;
+    width: calc(var(--max-width) / 2);
+    box-shadow: 0 0 2px #000;
+}
+.second__part {
+    background-color: var(--accent-color);
+    padding: 0;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto
+}
+.part__avatar {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.title__main_section {
+    font-size: 40px;
+    align-self: center;
+}
+
+.description__main_section {
+    font-size: 20px;
+    align-self: center;
+}
+.links {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+.links__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.link {
+    text-decoration: none;
+}
+.create {
+    background: #0077ff;
+}
+.discord {
+    background: #7289da;
+}
+.telegram {
+    background: #0088cc;
+}
+
+.second {
+    padding: 5px;
+    color: white;
+}

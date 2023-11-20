@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form th:object="${project}" th:action="@{/projects/create}" method="post">
+        <h1>Создание проекта</h1>
+        Наименование: <input type="text" th:field="*{name}">
+        <br>
+        Описание: <input type="text" th:field="*{description}">
+        <br>
+        Ссылка на проект: <input type="text" th:field="*{URL}">
+        <br>
+        Ссылка на изображение: <input type="text" th:field="*{imageURL}">
+        <br>
+        <br>
+        <input type="submit" value="Сохранить">
+    </form>
+</body>
+</html>
