@@ -1,16 +1,13 @@
 package by.Starleken.controllers;
 
 import by.Starleken.entities.Project;
-import by.Starleken.services.RealizationProjectService;
-import by.Starleken.services.interfaces.ProjectService;
+import by.Starleken.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.Random;
 
 @Controller()
 public class ProjectController {

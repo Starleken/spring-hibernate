@@ -1,8 +1,8 @@
-package by.Starleken.repositories;
+package by.Starleken.repositories.impl;
 
 import by.Starleken.entities.Tag;
-import by.Starleken.repositories.interfaces.TagRepository;
-import by.Starleken.utils.EntityManagerUtils;
+import by.Starleken.repositories.TagRepository;
+import by.Starleken.services.EntityManagerProvider;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,18 +10,18 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class RealizationTagRepository implements TagRepository {
+public class TagRepositoryImpl implements TagRepository {
 
-    private EntityManagerUtils entityManagerUtils;
+    private EntityManagerProvider entityManagerProvider;
 
     @Autowired
-    public RealizationTagRepository(EntityManagerUtils entityManagerUtils) {
-        this.entityManagerUtils = entityManagerUtils;
+    public TagRepositoryImpl(EntityManagerProvider entityManagerProvider) {
+        this.entityManagerProvider = entityManagerProvider;
     }
 
     @Override
     public List<Tag> findAll() {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
 
         List<Tag> tags = em.createNativeQuery("SELECT * FROM tags", Tag.class).getResultList();
 
@@ -31,7 +31,7 @@ public class RealizationTagRepository implements TagRepository {
 
     @Override
     public Tag findById(Long id) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
 
         Tag tag = em.find(Tag.class, id);
 
@@ -41,7 +41,7 @@ public class RealizationTagRepository implements TagRepository {
 
     @Override
     public Tag create(Tag entity) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         em.persist(entity);
@@ -55,7 +55,7 @@ public class RealizationTagRepository implements TagRepository {
 
     @Override
     public void save(List<Tag> tags) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         for (Tag tag : tags){
@@ -69,7 +69,7 @@ public class RealizationTagRepository implements TagRepository {
 
     @Override
     public void update(Tag entity) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         Tag tag = em.find(Tag.class, entity.getId());
@@ -81,7 +81,7 @@ public class RealizationTagRepository implements TagRepository {
 
     @Override
     public void delete(Long id) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         Tag tag = em.find(Tag.class, id);

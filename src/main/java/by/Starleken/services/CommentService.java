@@ -1,4 +1,4 @@
-package by.Starleken.services.interfaces;
+package by.Starleken.services;
 
 import by.Starleken.entities.Comment;
 import by.Starleken.entities.Tag;

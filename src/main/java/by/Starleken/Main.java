@@ -1,6 +1,5 @@
 package by.Starleken;
 
-import by.Starleken.utils.EntityManagerUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

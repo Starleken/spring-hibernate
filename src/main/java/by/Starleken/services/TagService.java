@@ -1,4 +1,4 @@
-package by.Starleken.services.interfaces;
+package by.Starleken.services;
 
 import by.Starleken.entities.Tag;
 import by.Starleken.interfaces.CRUD;

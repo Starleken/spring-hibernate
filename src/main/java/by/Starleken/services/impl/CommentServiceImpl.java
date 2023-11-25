@@ -1,20 +1,19 @@
-package by.Starleken.services;
+package by.Starleken.services.impl;
 
 import by.Starleken.entities.Comment;
-import by.Starleken.entities.Tag;
-import by.Starleken.repositories.interfaces.CommentRepository;
-import by.Starleken.services.interfaces.CommentService;
+import by.Starleken.repositories.CommentRepository;
+import by.Starleken.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RealizationCommentService implements CommentService {
+public class CommentServiceImpl implements CommentService {
     private CommentRepository commentRepository;
 
     @Autowired
-    public RealizationCommentService(CommentRepository commentRepository) {
+    public CommentServiceImpl(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
     }
 

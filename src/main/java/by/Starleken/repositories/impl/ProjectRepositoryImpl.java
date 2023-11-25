@@ -1,8 +1,8 @@
-package by.Starleken.repositories;
+package by.Starleken.repositories.impl;
 
 import by.Starleken.entities.Project;
-import by.Starleken.repositories.interfaces.ProjectRepository;
-import by.Starleken.utils.EntityManagerUtils;
+import by.Starleken.repositories.ProjectRepository;
+import by.Starleken.services.EntityManagerProvider;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,17 +10,17 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class RealizationProjectRepository implements ProjectRepository {
+public class ProjectRepositoryImpl implements ProjectRepository {
 
-    private EntityManagerUtils entityManagerUtils;
+    private EntityManagerProvider entityManagerProvider;
 
     @Autowired
-    public RealizationProjectRepository(EntityManagerUtils entityManagerUtils) {
-        this.entityManagerUtils = entityManagerUtils;
+    public ProjectRepositoryImpl(EntityManagerProvider entityManagerProvider) {
+        this.entityManagerProvider = entityManagerProvider;
     }
 
     public List<Project> findAll(){
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
 
         List<Project> projects = em.createNativeQuery("Select * from projects", Project.class).getResultList();
 
@@ -30,7 +30,7 @@ public class RealizationProjectRepository implements ProjectRepository {
     }
 
     public Project findById(Long id){
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
 
         Project project = em.find(Project.class, id);
 
@@ -41,7 +41,7 @@ public class RealizationProjectRepository implements ProjectRepository {
 
     @Override
     public Project create(Project entity) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         em.persist(entity);
@@ -54,7 +54,7 @@ public class RealizationProjectRepository implements ProjectRepository {
 
     @Override
     public void update(Project entity) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         Project project = em.find(Project.class, entity.getId());
@@ -68,7 +68,7 @@ public class RealizationProjectRepository implements ProjectRepository {
 
     @Override
     public void delete(Long id) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         Project project = em.find(Project.class, id);

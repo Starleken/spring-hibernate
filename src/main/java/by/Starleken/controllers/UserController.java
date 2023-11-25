@@ -1,6 +1,6 @@
 package by.Starleken.controllers;
 
-import by.Starleken.services.interfaces.UserService;
+import by.Starleken.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -110,12 +110,12 @@ public class Project {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Project project = (Project) o;
-        return Objects.equals(id, project.id) && Objects.equals(name, project.name) && Objects.equals(description, project.description) && Objects.equals(URL, project.URL) && Objects.equals(imageURL, project.imageURL) && Objects.equals(comments, project.comments) && Objects.equals(tags, project.tags);
+        return Objects.equals(id, project.id) && Objects.equals(name, project.name) && Objects.equals(description, project.description) && Objects.equals(URL, project.URL) && Objects.equals(imageURL, project.imageURL);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, URL, imageURL, comments, tags);
+        return Objects.hash(id, name, description, URL, imageURL);
     }
 
     @Override
@@ -126,8 +126,6 @@ public class Project {
                 ", description='" + description + '\'' +
                 ", URL='" + URL + '\'' +
                 ", imageURL='" + imageURL + '\'' +
-                ", comments=" + comments +
-                ", tags=" + tags +
                 '}';
     }
 }

@@ -1,4 +1,4 @@
-package by.Starleken.repositories.interfaces;
+package by.Starleken.repositories;
 
 import by.Starleken.entities.Project;
 import by.Starleken.interfaces.CRUD;

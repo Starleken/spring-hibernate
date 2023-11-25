@@ -1,28 +1,27 @@
-package by.Starleken.repositories;
+package by.Starleken.repositories.impl;
 
 import by.Starleken.entities.Plan;
-import by.Starleken.repositories.interfaces.PlanRepository;
-import by.Starleken.utils.EntityManagerUtils;
+import by.Starleken.repositories.PlanRepository;
+import by.Starleken.services.EntityManagerProvider;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
 import java.util.List;
 
 @Repository
-public class RealizationPlanRepository implements PlanRepository {
+public class PlanRepositoryImpl implements PlanRepository {
 
-    private EntityManagerUtils entityManagerUtils;
+    private EntityManagerProvider entityManagerProvider;
 
     @Autowired
-    public RealizationPlanRepository(EntityManagerUtils entityManagerUtils) {
-        this.entityManagerUtils = entityManagerUtils;
+    public PlanRepositoryImpl(EntityManagerProvider entityManagerProvider) {
+        this.entityManagerProvider = entityManagerProvider;
     }
 
     @Override
     public List<Plan> findAll() {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
 
         List<Plan> plans =em.createNativeQuery("SELECT * FROM plans", Plan.class).getResultList();
 
@@ -32,7 +31,7 @@ public class RealizationPlanRepository implements PlanRepository {
 
     @Override
     public Plan findById(Long id) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
 
         Plan plan = em.find(Plan.class, id);
 
@@ -42,7 +41,7 @@ public class RealizationPlanRepository implements PlanRepository {
 
     @Override
     public Plan create(Plan entity) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         em.persist(entity);
@@ -55,7 +54,7 @@ public class RealizationPlanRepository implements PlanRepository {
 
     @Override
     public void update(Plan entity) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         Plan plan = em.find(Plan.class, entity.getId());
@@ -69,7 +68,7 @@ public class RealizationPlanRepository implements PlanRepository {
 
     @Override
     public void delete(Long id) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         Plan plan = em.find(Plan.class, id);

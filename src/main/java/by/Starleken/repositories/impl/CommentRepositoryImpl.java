@@ -1,8 +1,8 @@
-package by.Starleken.repositories;
+package by.Starleken.repositories.impl;
 
 import by.Starleken.entities.Comment;
-import by.Starleken.repositories.interfaces.CommentRepository;
-import by.Starleken.utils.EntityManagerUtils;
+import by.Starleken.repositories.CommentRepository;
+import by.Starleken.services.EntityManagerProvider;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,18 +10,18 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class RealizationCommentRepository implements CommentRepository {
+public class CommentRepositoryImpl implements CommentRepository {
 
-    private EntityManagerUtils entityManagerUtils;
+    private EntityManagerProvider entityManagerProvider;
 
     @Autowired
-    public RealizationCommentRepository(EntityManagerUtils entityManagerUtils) {
-        this.entityManagerUtils = entityManagerUtils;
+    public CommentRepositoryImpl(EntityManagerProvider entityManagerProvider) {
+        this.entityManagerProvider = entityManagerProvider;
     }
 
     @Override
     public List<Comment> findAll() {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
 
         List<Comment> comments = em.createNativeQuery("SELECT * FROM comments", Comment.class).getResultList();
 
@@ -31,7 +31,7 @@ public class RealizationCommentRepository implements CommentRepository {
 
     @Override
     public Comment findById(Long id) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
 
         Comment comment = em.find(Comment.class, id);
 
@@ -41,7 +41,7 @@ public class RealizationCommentRepository implements CommentRepository {
 
     @Override
     public Comment create(Comment entity) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         em.persist(entity);
@@ -54,7 +54,7 @@ public class RealizationCommentRepository implements CommentRepository {
 
     @Override
     public void update(Comment entity) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         Comment comment = em.find(Comment.class, entity.getId());
@@ -66,7 +66,7 @@ public class RealizationCommentRepository implements CommentRepository {
 
     @Override
     public void delete(Long id) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         Comment comment = em.find(Comment.class, id);
@@ -77,20 +77,20 @@ public class RealizationCommentRepository implements CommentRepository {
 
     @Override
     public void increaseRating(Long commentId) {
-        addCommentRating(commentId, 1);
+        updateCommentRating(commentId, 1);
     }
 
     @Override
     public void decreaseRating(Long commentId) {
-        addCommentRating(commentId, -1);
+        updateCommentRating(commentId, -1);
     }
 
-    private void addCommentRating(Long id, int value){
-        EntityManager em = entityManagerUtils.getEntityManager();
+    private void updateCommentRating(Long id, int diff){
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         Comment comment = em.find(Comment.class, id);
-        comment.setRating(comment.getRating() + value);
+        comment.setRating(comment.getRating() + diff);
 
         em.getTransaction().commit();
         em.close();

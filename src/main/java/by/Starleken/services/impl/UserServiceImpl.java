@@ -1,8 +1,8 @@
-package by.Starleken.services;
+package by.Starleken.services.impl;
 
 import by.Starleken.entities.User;
-import by.Starleken.repositories.interfaces.UserRepository;
-import by.Starleken.services.interfaces.UserService;
+import by.Starleken.repositories.UserRepository;
+import by.Starleken.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +10,11 @@ import java.util.Comparator;
 import java.util.List;
 
 @Service
-public class RealizationUserService implements UserService {
+public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
-    public RealizationUserService(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

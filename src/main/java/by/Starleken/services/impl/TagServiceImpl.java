@@ -1,21 +1,21 @@
-package by.Starleken.services;
+package by.Starleken.services.impl;
 
 import by.Starleken.entities.Tag;
-import by.Starleken.repositories.interfaces.TagRepository;
-import by.Starleken.services.interfaces.TagService;
-import by.Starleken.utils.EntityManagerUtils;
+import by.Starleken.repositories.TagRepository;
+import by.Starleken.services.EntityManagerProvider;
+import by.Starleken.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RealizationTagService implements TagService {
+public class TagServiceImpl implements TagService {
 
     private TagRepository tagRepository;
 
     @Autowired
-    public RealizationTagService(TagRepository tagRepository, EntityManagerUtils entityManagerUtils) {
+    public TagServiceImpl(TagRepository tagRepository, EntityManagerProvider entityManagerProvider) {
         this.tagRepository = tagRepository;
     }
 

@@ -1,22 +1,20 @@
-package by.Starleken.services;
+package by.Starleken.services.impl;
 
 import by.Starleken.entities.Project;
-import by.Starleken.interfaces.CRUD;
-import by.Starleken.repositories.RealizationProjectRepository;
-import by.Starleken.repositories.interfaces.ProjectRepository;
-import by.Starleken.services.interfaces.ProjectService;
+import by.Starleken.repositories.ProjectRepository;
+import by.Starleken.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RealizationProjectService implements ProjectService {
+public class ProjectServiceImpl implements ProjectService {
 
     private ProjectRepository projectRepository;
 
     @Autowired
-    public RealizationProjectService(ProjectRepository ProjectRepository) {
+    public ProjectServiceImpl(ProjectRepository ProjectRepository) {
         this.projectRepository = ProjectRepository;
     }
 

@@ -1,4 +1,4 @@
-package by.Starleken.repositories.interfaces;
+package by.Starleken.repositories;
 
 import by.Starleken.entities.User;
 import by.Starleken.interfaces.CRUD;

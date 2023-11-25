@@ -1,8 +1,8 @@
-package by.Starleken.repositories;
+package by.Starleken.repositories.impl;
 
 import by.Starleken.entities.User;
-import by.Starleken.repositories.interfaces.UserRepository;
-import by.Starleken.utils.EntityManagerUtils;
+import by.Starleken.repositories.UserRepository;
+import by.Starleken.services.EntityManagerProvider;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,18 +10,18 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class RealizationUserRepository implements UserRepository {
+public class UserRepositoryImpl implements UserRepository {
 
-    private EntityManagerUtils entityManagerUtils;
+    private EntityManagerProvider entityManagerProvider;
 
     @Autowired
-    public RealizationUserRepository(EntityManagerUtils entityManagerUtils) {
-        this.entityManagerUtils = entityManagerUtils;
+    public UserRepositoryImpl(EntityManagerProvider entityManagerProvider) {
+        this.entityManagerProvider = entityManagerProvider;
     }
 
     @Override
     public List<User> findAll() {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
 
         List<User> users = em.createNativeQuery("SELECT * FROM users", User.class).getResultList();
 
@@ -31,7 +31,7 @@ public class RealizationUserRepository implements UserRepository {
 
     @Override
     public User findById(Long id) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
 
         User user = em.find(User.class, id);
 
@@ -41,7 +41,7 @@ public class RealizationUserRepository implements UserRepository {
 
     @Override
     public User create(User entity) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         em.persist(entity);
@@ -54,7 +54,7 @@ public class RealizationUserRepository implements UserRepository {
 
     @Override
     public void update(User entity) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         User user = em.find(User.class, entity.getId());
@@ -67,7 +67,7 @@ public class RealizationUserRepository implements UserRepository {
 
     @Override
     public void delete(Long id) {
-        EntityManager em = entityManagerUtils.getEntityManager();
+        EntityManager em = entityManagerProvider.getEntityManager();
         em.getTransaction().begin();
 
         User user = em.find(User.class, id);
