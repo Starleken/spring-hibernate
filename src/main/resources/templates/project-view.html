@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Проект</title>
+    <link rel="stylesheet" href="/css/stylesheet.css" />
+    <link rel="stylesheet" href="/css/projectStyles.css"/>
+</head>
+<body>
+    <header>
+        <div class="header__row">
+            <div>
+                <h3>Место для лого</h3>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="main__section">
+            <div class="first__part part">
+                <img th:src="${project.getImageURL()}" alt="фото" class="single_photo" />
+            </div>
+        </section>
+        <section class="main__section">
+            <div class="second__part part second">
+                <h2 th:text="${project.getName()}"></h2>
+                <p th:text="${project.getDescription()}"></p>
+            </div>
+        </section>
+        <div class="cart" th:each="comment : ${project.getComments()}">
+            <div>
+                <h2 th:text="${comment.getUser().getUsername()}"></h2>
+                <p th:text="${comment.getMessage()}"></p>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
